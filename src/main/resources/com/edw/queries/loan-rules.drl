@@ -5,30 +5,30 @@ unit LoanUnitData;
 import com.edw.model.Loan;
 
 rule HighRiskCustomerEverythingBelowMinimum when
-   $loan: /loan[age <= 20, salary <= 1000]
+   $L: /loan[age <= 20, salary <= 1000]
 then
-   modify($loan) { setRisk("High") };
+   modify($L) { setRisk("High") };
 end
 
 rule MediumRiskCustomerAgeBelowMinimum when
-   $loan: /loan[age <= 20, salary > 1000]
+   $L: /loan[age <= 20, salary > 1000]
 then
-   modify($loan) { setRisk("Medium") };
+   modify($L) { setRisk("Medium") };
 end
 
 rule MediumRiskCustomerSalaryBelowMinimum when
-   $loan: /loan[age > 20, salary <= 1000]
+   $L: /loan[age > 20, salary <= 1000]
 then
-   modify($loan) { setRisk("Medium") };
+   modify($L) { setRisk("Medium") };
 end
 
 rule LowRiskCustomerSalaryEverythingAboveMinimum when
-   $loan: /loan[age > 20, salary > 1000]
+   $L: /loan[age > 20, salary > 1000]
 then
-   modify($loan) { setRisk("Low") };
+   modify($L) { setRisk("Low") };
 end
 
 
 query GetRisk
-   $loan: /loan
+   $L: /loan
 end
