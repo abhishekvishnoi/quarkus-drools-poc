@@ -14,35 +14,24 @@ $ java -jar .\target\quarkus-app\quarkus-run.jar
 
 ## Test
 ```
-$ curl  -X POST http://localhost:8080/get-risk  \
-    -H 'content-type: application/json'  \
-    -H 'accept: application/json'   \
-    -d '{"loan" : [{"age":17, "salary":900}]}'
-    
-[{"age":17,"salary":900.0,"risk":"High"}]
-```
-
-```
-$ curl  -X POST http://localhost:8080/get-risk  \
-    -H 'content-type: application/json'  \
-    -H 'accept: application/json'   \
-    -d '{"loan" : [{"age":17, "salary":900}, {"age":39,"salary":1900.0}]}'
-
-[{"age":39,"salary":1900.0,"risk":"Low"},{"age":17,"salary":900.0,"risk":"High"}]    
-```
-
-## Unit Tests
-```java
-@Test
-public void testHighRisk() {
-        given()
-        .body("{\"loan\" : [{\"age\":17, \"salary\":900}]}")
-        .contentType(ContentType.JSON)
-        .log().all()
-        .when()
-        .post("/get-risk")
-        .then()
-        .statusCode(200).log().all()
-        .body("risk", hasItem("High"));
+curl --location --request POST 'http://localhost:8080/get-gst' \
+--header 'content-type: application/json' \
+--header 'accept: application/json' \
+--data-raw '{
+    "gst": [
+        {
+            "state": "Haryana",
+            "isStateExempt": true 
         }
+    ]
+}'
+    
+[
+    {
+        "stateTax": 22,
+        "centralTax": 0,
+        "state": "Haryana",
+        "stateExempt": false
+    }
+]
 ```
