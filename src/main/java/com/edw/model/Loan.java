@@ -5,8 +5,6 @@ package com.edw.model;
  *     com.edw.model.Loan
  * </pre>
  *
- * @author Muhammad Edwin < edwin at redhat dot com >
- * 15 Mar 2023 10:35
  */
 public class Loan {
 

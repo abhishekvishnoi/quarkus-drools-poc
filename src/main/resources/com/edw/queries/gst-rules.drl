@@ -1,0 +1,15 @@
+package com.edw.queries;
+
+unit GstUnitData;
+
+import com.edw.model.Gst;
+
+rule StateIsNotTaxable when
+   $G: /gst[state == "Haryana"  ]
+then
+   modify($G) {  setCentralTax(0) , setStateTax(22) };
+end
+
+query GetGst
+   $G: /gst
+end
